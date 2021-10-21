@@ -13,14 +13,14 @@
 
 class HangmanWord:
     def __init__(self,word):
-        self.word = word
-        self.guessword = ""
+        self.word = word.lower()
+        self.guessword = "".join(['_' for char in self.word])
 
     def __str__(self):
         print_str = ""
         for ch in self.guessword:
             print_str += ch + " "
-        return print_str
+        return print_str.strip()
 
     def char_in_word(self, char):
         if char.lower() in self.word.lower():
@@ -28,16 +28,12 @@ class HangmanWord:
         else:
             return False
 
-    def change_guessword(self):
-        for ch in self.word:
-            self.guessword += "_"
-
     def reveal_letter(self,char):
-        guessword_list = self.guessword.split()
+        guessword_list = list(self.guessword)
         for index, value in enumerate(self.word):
             if value == char:
                 guessword_list[index] = char
-        self.guessword = guessword_list.join()
+        self.guessword = ''.join(guessword_list)
         
     def _validate_character(self,char):
         if len(char) == 1 and char.isalpha():
@@ -50,4 +46,6 @@ class HangmanWord:
 
 word1 = HangmanWord("ball")
 word1.reveal_letter("a")
+word1.reveal_letter("k")
+word1.reveal_letter("l")
 print(word1)
