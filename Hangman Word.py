@@ -13,7 +13,7 @@
 
 class HangmanWord:
     def __init__(self,word):
-        self.word = word.lower()
+        self.word = word
         self.guessword = "".join(['_' for char in self.word])
 
     def __str__(self):
@@ -31,7 +31,7 @@ class HangmanWord:
     def reveal_letter(self,char):
         guessword_list = list(self.guessword)
         for index, value in enumerate(self.word):
-            if value == char:
+            if value.lower() == char.lower():
                 guessword_list[index] = char
         self.guessword = ''.join(guessword_list)
         
