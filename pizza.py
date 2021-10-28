@@ -71,10 +71,15 @@ class Pizza:
 
     def __str__(self) -> str:
         if self.toppings:
-            toppings_str = ", ".join(self.toppings)
-            return f"{self.size.capitalize()} {self.name} pizza with {toppings_str}"
+            toppings_str = ""
+            for topping in self.toppings:
+                toppings_str += str(topping) + ", "
+            toppings_str = toppings_str[:-2]
+            size_str = self.size.capitalize()
+            return f"{size_str} {self.name} pizza with {toppings_str}"
         else:
-            return f"{self.size} {self.name} pizza with nothing"
+            size_str = self.size.capitalize()
+            return f"{size_str} {self.name} pizza with nothing"
     
     def add_topping(self, topping):
         self.toppings.append(topping)
@@ -96,7 +101,7 @@ class Pizza:
 
 my_pizza = Pizza("delicious", "small")
 my_pizza.add_topping(Topping("apple", 500))
-print(my_pizza.get_price())
+print(my_pizza)
 
 
 
